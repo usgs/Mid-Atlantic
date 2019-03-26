@@ -156,7 +156,7 @@ $("#finished").click(function(){
 //      $(this).removeAttr('style');
 //      $(this).find('i').attr('class', 'fa fa-check');
 // Lines 180 - 214 This block of code is for the different point groups and the number associated with that grouping of points per the endpoint API. 
-$("#finished").click(function(){
+/*$("#finished").click(function(){
 	var where =featureLayer.getWhere();
         var condition = " and EDITSTATUS > 1"
 	if(!where.includes(condition)){
@@ -166,9 +166,9 @@ $("#finished").click(function(){
         } else {
 	  featureLayer.setWhere(where.split(condition)[0])
 	}
-});
+});*/
 
-$("#tobechecked").click(function(){
+/*$("#tobechecked").click(function(){
 	var where =featureLayer.getWhere();
         var condition = " and EDITSTATUS = 0"
 	if(!where.includes(condition)){
@@ -178,9 +178,9 @@ $("#tobechecked").click(function(){
         } else {
 	  featureLayer.setWhere(where.split(condition)[0])
 	}
-});
+});*/
 
-$("#tobepeerreviwed").click(function(){
+/*$("#tobepeerreviwed").click(function(){
 	var where =featureLayer.getWhere();
         var condition = " and EDITSTATUS = 1"
 	if(!where.includes(condition)){
@@ -190,9 +190,9 @@ $("#tobepeerreviwed").click(function(){
         } else {
 	  featureLayer.setWhere(where.split(condition)[0])
 	}
-});
+});*/
 //Lines 216 - 224 This block of code controls the icons in the legend and allows users to turn them on and off and see only that layer. 
-/* $(".markers-legend").hover(function(){
+ /*$(".markers-legend").hover(function(){
    $(this).css('cursor', 'pointer');
    original = $(this).find("i").attr('class');
    $(this).css("background-position", "-144px -46px").css("padding-top", "8px").css("padding-left", "8px");
