@@ -148,10 +148,10 @@ h5 {
   padding-top: 8px;
   padding-left: 10px
 }
-.markers-legend:hover{
+/*.markers-legend:hover{
   background-position: -108px -46px;
   cursor: pointer;
-}
+}*///
 /*
 Lines 126 - 168: show the features that the legend is capable of,. Such as hoving over each icon.*/
 .markers-descri{
