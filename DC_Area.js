@@ -26,7 +26,7 @@ Note: Line 46  and 47 are important in this block of code. Line 46 is where the 
 var featureLayer = L.esri.clusteredFeatureLayer({
           chunkedLoading: true,
           url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
-		  where: "FCODE= '74034' and STATE ='TX'",
+		  where: "FCODE= '83044' AND (STATE ='VA' OR STATE='DE' OR STATE='MD')",
           pointToLayer: function(feature, latlng) {
             if(feature.properties.EDITSTATUS === 0){ 
               return L.marker(latlng, {
@@ -72,8 +72,8 @@ var featureLayer = L.esri.clusteredFeatureLayer({
           }
         });
 // Lines 96 - 98 Is your bounding box, for the area you wish to focus the map. 					 
-var southWest = L.latLng(25.8373770, -106.6456460), 
-  northEast = L.latLng(36.5007040, -93.5082920),
+var southWest = L.latLng(35.522516, -87.432706), // updated March 2019  
+  northEast = L.latLng(41.540258, -73.420832),
   bounds = L.latLngBounds(southWest, northEast);
 
 /*
@@ -99,7 +99,7 @@ var basemap = L.map('basemap',{
 var map = L.map('map',{
 	layers: [national,usda],
 	'maxBounds': bounds 
-}) .setView([40.63, -77.84], 6);
+}) .setView([38.005358, -79.154932], 6);
 
 featureLayer.addTo(map); 
 
@@ -192,7 +192,7 @@ $("#tobepeerreviwed").click(function(){
 	}
 });
 //Lines 216 - 224 This block of code controls the icons in the legend and allows users to turn them on and off and see only that layer. 
- $(".markers-legend").hover(function(){
+/* $(".markers-legend").hover(function(){
    $(this).css('cursor', 'pointer');
    original = $(this).find("i").attr('class');
    $(this).css("background-position", "-144px -46px").css("padding-top", "8px").css("padding-left", "8px");
@@ -200,4 +200,4 @@ $("#tobepeerreviwed").click(function(){
  }, function(){
    $(this).removeAttr('style');
    $(this).find('i').attr('class', original);
- })
+ })*/
