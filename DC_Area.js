@@ -60,20 +60,20 @@ var featureLayer = L.esri.clusteredFeatureLayer({
           onEachFeature: function(feature, layer){
             if(feature.properties.EDITSTATUS === 0){ 
               needsChecked++;
-              $('#tobecheckedCounter').text(" (" + needsChecked + " points)");
+              $('#tobecheckedCounter').text(" (" + needsChecked++ + " points)");
             } else if (feature.properties.EDITSTATUS === 1){
               needsReviewed++;
-              $('#tobepeerreviwedCounter').text(" (" + needsReviewed + " points)");
+              $('#tobepeerreviwedCounter').text(" (" + needsReviewed++ + " points)");
             } else {
               finshed++;
-              $('#finishedCounter').text(" (" + finshed  + " points)")
+              $('#finishedCounter').text(" (" + finshed++  + " points)")
             }
             layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
           }
         });
 // Lines 96 - 98 Is your bounding box, for the area you wish to focus the map. 					 
-var southWest = L.latLng(35.522516, -87.432706), // updated March 2019  
-  northEast = L.latLng(41.540258, -73.420832),
+var southWest = L.latLng(31.427153, -88.204519), // updated March 2019  
+  northEast = L.latLng(47.021951, -68.569633),
   bounds = L.latLngBounds(southWest, northEast);
 
 /*
