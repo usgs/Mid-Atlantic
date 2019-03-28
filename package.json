@@ -1,0 +1,23 @@
+{
+  "name": "dc-area",
+  "version": "1.0.0",
+  "description": "Mapping Challenge for the Collection of City/Town Halls in the DC Area.",
+  "main": "DC_Area.js",
+  "dependencies": {
+    "gulp": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstevensonUSGS/DC-Area.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rstevensonUSGS/DC-Area/issues"
+  },
+  "homepage": "https://github.com/rstevensonUSGS/DC-Area#readme"
+}
