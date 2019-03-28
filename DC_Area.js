@@ -60,17 +60,29 @@ var featureLayer = L.esri.clusteredFeatureLayer({
           onEachFeature: function(feature, layer){
             if(feature.properties.EDITSTATUS === 0){ 
               needsChecked++;
-              $('#tobecheckedCounter').text(" (" + needsChecked++ + " points)");
+              $('#tobecheckedCounter').text(" (" + needsChecked + " points)");
             } else if (feature.properties.EDITSTATUS === 1){
               needsReviewed++;
-              $('#tobepeerreviwedCounter').text(" (" + needsReviewed++ + " points)");
+              $('#tobepeerreviwedCounter').text(" (" + needsReviewed + " points)");
             } else {
               finshed++;
-              $('#finishedCounter').text(" (" + finshed++  + " points)")
+              $('#finishedCounter').text(" (" + finshed  + " points)")
             }
             layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
           }
         });
+	
+	
+// Count 
+	link = $.ajax({
+		url:"https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0/query?where=FCODE+%3D+%2783044%27+AND+STATE+in+%28%27VA%27%2C+%27DE%27%2C+%27DC%27%2C%27MD%27%29&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=EDITSTATUS&outStatistics=%5B%0D%0A++%7B%0D%0A++++%22statisticType%22%3A+%22count%22%2C%0D%0A++++%22onStatisticField%22%3A+%22EDITSTATUS%22%2C%0D%0A++++%22outStatisticFieldName%22%3A+%22count%22%0D%0A++%7D%0D%0A%5D&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=html&__ncforminfo=r3LkqYjqFEbHVpCWR5wtkw_H47NFamSq8STnJ6PM0kAV_iNkHEUgPP0lXSGnOmUrwF8U-GZWRBDVIGvr2eU3EXwVxmfYXPzAE57hNvw0kG1d9RZfikKdg0gL3L2AtWcotxVYCnvaWkM_pQGokwABQgULyTb2Bmb1iISLpBFvIicTEplHc0Gm4G2pDThdAxEs5IH5S-qIoxe3GxytIbn1gtXqZG9T7CjgzzuVVvoJnv05nuMktdFEG2n7OOao0Kf-VbTa9e8yPRDxJmL9Sd2er87iXsO5LTp7xn8RVIN-nSiAOEHqh_N3FjiRuK-OfD4XpF7A1HGlAZR9Fl4QF9CLnTGzxtxdTHtm8GT1umhdHnwTMn8vBfd-KSzhZcALcpFOgLk6PN9nMCsJ0FElkTnbmeyTCz_lvfq26QL52Z-1n8HURWiAWHOfDwRJbDCRhPK1iOnqgLn6hY3rqBobxs61qRhcw2r2fjBbnuOcMXl6N27MQO8p4MMQ7wznFtjPp0WMoQK44R5XUPoTY0ZVm_FQZ_S_rKMacHCHD_yp-p1TtznqGrl-ijBFIJ2G8ku0KjfCvl_-kjdLC5XOpUGi2TC_mRUsDX1SHTK1wtN9DiL2zG6_iMs1NTQElQ%3D%3D"
+	}); 
+	function countStatus(link){
+		return url
+	};
+	console.log(countStatus);
+
+			
 // Lines 96 - 98 Is your bounding box, for the area you wish to focus the map. 					 
 var southWest = L.latLng(31.427153, -88.204519), // updated March 2019  
   northEast = L.latLng(47.021951, -68.569633),
@@ -201,3 +213,6 @@ $("#finished").click(function(){
    $(this).removeAttr('style');
    $(this).find('i').attr('class', original);
  })*/
+ 
+//Alert Turned off all three layers 
+

@@ -119,7 +119,7 @@ h5 {
 	margin-left: inherit
 }
 #clusterImage{
-  background: url('../img/Main_point2.png') no-repeat 0 0;;
+  background: url('../img/Main_point2.png') no-repeat 0 0;
   width: 35px;
   height: 46px;
   color: #ffffff;
@@ -151,7 +151,7 @@ h5 {
 /*.markers-legend:hover{
   background-position: -108px -46px;
   cursor: pointer;
-}*///
+}
 /*
 Lines 126 - 168: show the features that the legend is capable of,. Such as hoving over each icon.*/
 .markers-descri{
