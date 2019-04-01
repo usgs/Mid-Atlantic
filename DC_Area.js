@@ -23,7 +23,7 @@ var needsReviewed = 0;
 var finshed = 0;
 /* Lines 47 - 91 This is the feature lay group for the clustering of the points.
 Note: Line 46  and 47 are important in this block of code. Line 46 is where the endpoint api goes. And Lines 47 is the query for the feature type you are hoping to focus on */
-var featureLayer = L.esri.clusteredFeatureLayer({
+var featureLayer = new L.esri.FeatureLayer({
           chunkedLoading: true,
           url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
 		  where: "FCODE= '83044' AND (STATE ='VA' OR STATE='DE' OR STATE='MD')",

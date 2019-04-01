@@ -18,7 +18,7 @@ html, body {
 }
 /*Lines 20 -35 : This block of code focuses on the header of the web map application. H1 is the size of the text.This block of code breaks down what the font will look like given these parameters. */
 #info {
-  background-color: #2c782f;
+  background-color: #002F57;
   width: 30%
 }
 #header h1 {
@@ -43,9 +43,9 @@ h2 {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #ffffff;
-  background-color: #0f5c08;
+  background-color:  #00264c;
   text-shadow: 0px 2px 2px #0A0A0A;
-  box-shadow: 0px 2px 2px #073203;
+  box-shadow: 0px 2px 2px #00264c;
   z-index: 1000
 }
 /*Lines 52-62: This block of code is after the first block of h2 text. Again, this block focuses on what h2 will look like. Notice it does not give a font family and focuses strictly on the position and width of the h2 text in this block. */
@@ -57,7 +57,7 @@ h2:after {
   right: 0px;
   top: 100%;
   border: 10px solid;
-  border-color: #00421e transparent transparent #00421e;
+  border-color: #002F57 transparent transparent #002F57;
   z-index: 999
 }
 /*Lines 64 - 82:  .info and .info h4 go together to show the design components for the ‘about’ section of the interactive web map. It provides the font family and the color of the font located in this section.*/
@@ -87,7 +87,7 @@ h5 {
   margin-left: -20px;
   padding-left: 20px;
   color: #ffffff;
-  background-color: #2c782f;
+  background-color: #004489;
   z-index: 1000
 }
 .clusterpoints {
