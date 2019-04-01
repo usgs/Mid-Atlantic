@@ -45,7 +45,7 @@ h2 {
   color: #ffffff;
   background-color:  #00264c;
   text-shadow: 0px 2px 2px #0A0A0A;
-  box-shadow: 0px 2px 2px #002F57;
+  box-shadow: 0px 2px 2px #00264c;
   z-index: 1000
 }
 /*Lines 52-62: This block of code is after the first block of h2 text. Again, this block focuses on what h2 will look like. Notice it does not give a font family and focuses strictly on the position and width of the h2 text in this block. */
