@@ -1,0 +1,16 @@
+function UneditedCheckbox(unedited, Unedited){
+	var checkbox = getElementById('Unedtied').checked; // all the layers start on
+	document.getElementById("demo").innerHTML = checkbox;
+	$('.unedited').toggle(false); // Therefore when unchecked I want them removed from the map
+}
+function PeerReCheckbox (peerreview,PeerReview){
+	var checkbox2 = getElementById('PeerReview').checked; 
+	document.getElementById("text").innerHTML= checkbox2;
+	$('.peerreview').toggle(false);
+}
+
+function FinishedCheckbox (finished, Finished){
+	var checkbox3 = getElementById("Finished").checked;
+	document.getElementById("example").innerHTML=checkbox3;
+	$('.finished').toggle(false);
+}

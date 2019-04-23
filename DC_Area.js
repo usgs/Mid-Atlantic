@@ -23,6 +23,10 @@ var needsReviewed = 0;
 var finshed = 0;
 /* Lines 47 - 91 This is the feature lay group for the clustering of the points.
 Note: Line 46  and 47 are important in this block of code. Line 46 is where the endpoint api goes. And Lines 47 is the query for the feature type you are hoping to focus on */
+
+/* Checkbox */ 
+// unedited points turn off and on 
+
 var featureLayer = new L.esri.FeatureLayer({
           chunkedLoading: true,
           url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
@@ -71,8 +75,32 @@ var featureLayer = new L.esri.FeatureLayer({
             layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
           }
         });
+	
 
-			
+// Checkboxes 
+function UneditedCheckbox(unedited, Unedited){
+	var checkbox = getElementById('Unedtied').checked; // all the layers start on
+	document.getElementById("demo").innerHTML = checkbox;
+	$('.unedited').click([featureLayer],load); // Therefore when unchecked I want them removed from the map
+}
+
+
+function PeerReCheckbox (peerreview,PeerReview){
+	var checkbox2 = getElementById('PeerReview').checked; 
+	document.getElementById("text").innerHTML= checkbox2;
+}
+
+$('.peerreview').click("unload", function() {
+	alert("peer review points selected");
+});
+
+function FinishedCheckbox (finished, Finished){
+	var checkbox3 = getElementById("Finished").checked;
+	document.getElementById("example").innerHTML=checkbox3;
+	$('.finished').click([featureLayer], load);
+}
+
+	
 // Lines 96 - 98 Is your bounding box, for the area you wish to focus the map. 					 
 var southWest = L.latLng(31.427153, -88.204519), // updated March 2019  
   northEast = L.latLng(47.021951, -68.569633),
