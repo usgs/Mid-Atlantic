@@ -14,3 +14,27 @@ function FinishedCheckbox (finished, Finished){
 	document.getElementById("example").innerHTML=checkbox3;
 	$('.finished').toggle(false);
 }
+
+
+  Updated Code May not Need 
+function UneditedCheckbox(unedited, Unedited){
+	var checkbox = getElementById('Unedtied').checked; // all the layers start on
+	document.getElementById("demo").innerHTML = checkbox;
+	$('.unedited').click([featureLayer],load); // Therefore when unchecked I want them removed from the map
+}
+
+
+function PeerReCheckbox (peerreview,PeerReview){
+	var checkbox2 = getElementById('PeerReview').checked; 
+	document.getElementById("text").innerHTML= checkbox2;
+}
+
+$('.peerreview').click("unload", function() {
+	alert("peer review points selected");
+});
+
+function FinishedCheckbox (finished, Finished){
+	var checkbox3 = getElementById("Finished").checked;
+	document.getElementById("example").innerHTML=checkbox3;
+	$('.finished').click([featureLayer], load);
+}
