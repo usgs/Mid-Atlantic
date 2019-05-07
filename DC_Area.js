@@ -24,13 +24,11 @@ var finshed = 0;
 /* Lines 47 - 91 This is the feature lay group for the clustering of the points.
 Note: Line 46  and 47 are important in this block of code. Line 46 is where the endpoint api goes. And Lines 47 is the query for the feature type you are hoping to focus on */
 
-/* Checkbox */ 
-// unedited points turn off and on 
 
-var featureLayer = new L.esri.FeatureLayer({
+/*var featureLayer = new L.esri.FeatureLayer({
           chunkedLoading: true,
           url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
-		  where: "FCODE= '83044' AND (STATE ='VA' OR STATE='DE' OR STATE='MD')",
+		  where: "FCODE= '83044' AND STATE ='NY'",
           pointToLayer: function(feature, latlng) {
             if(feature.properties.EDITSTATUS === 0){ 
               return L.marker(latlng, {
@@ -74,60 +72,106 @@ var featureLayer = new L.esri.FeatureLayer({
             }
             layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
           }
-        });
-	
-
-// Checkboxes 
-function UneditedCheckbox(unedited, Unedited){
-	var checkbox = getElementById('Unedtied').checked; // all the layers start on
-	document.getElementById("demo").innerHTML = checkbox;
-	$('.unedited').click([featureLayer],load); // Therefore when unchecked I want them removed from the map
-}
-
-
-function PeerReCheckbox (peerreview,PeerReview){
-	var checkbox2 = getElementById('PeerReview').checked; 
-	document.getElementById("text").innerHTML= checkbox2;
-}
-
-$('.peerreview').click("unload", function() {
-	alert("peer review points selected");
-});
-
-function FinishedCheckbox (finished, Finished){
-	var checkbox3 = getElementById("Finished").checked;
-	document.getElementById("example").innerHTML=checkbox3;
-	$('.finished').click([featureLayer], load);
-}
-
+        });*/
 	
 // Lines 96 - 98 Is your bounding box, for the area you wish to focus the map. 					 
 var southWest = L.latLng(31.427153, -88.204519), // updated March 2019  
   northEast = L.latLng(47.021951, -68.569633),
   bounds = L.latLngBounds(southWest, northEast);
 
+  // Checkboxes 
+
+  var uneditedpts = L.esri.featureLayer({
+    url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
+  where: "EDITSTATUS = 0 AND FCODE = '83044' AND STATE='NY'",
+            pointToLayer: function(feature, latlng) {
+              if(feature.properties.EDITSTATUS === 0){ 
+                return L.marker(latlng, {
+                    icon: L.ExtraMarkers.icon({
+                        icon: 'fa-exclamation fa-2x',
+                        shape: 'square',
+                        markerColor:'red',
+                        prefix: 'fa'}), 
+                    },
+                )};  
+    },      onEachFeature: function(feature, layer){
+          feature.properties.EDITSTATUS === 0 
+          needsChecked++;
+          $('#tobecheckedCounter').text(" (" + needsChecked + " points)");
+      layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
+    }        
+  }); 
+  
+  
+  var peerreviewpts = L.esri.featureLayer({
+    url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0", 
+  where: "EDITSTATUS = 1 AND FCODE = '83044' AND STATE='NY'",
+          pointToLayer: function(feature, latlng) {
+            if(feature.properties.EDITSTATUS === 1){ 
+              return L.marker(latlng, {
+                icon: L.ExtraMarkers.icon({
+                    icon: 'fa-times fa-2x',
+                    markerColor:'green-light',
+                    shape: 'square',
+                    prefix: 'fa'}), 
+          },
+      )};
+    },  onEachFeature: function(feature, layer){
+        feature.properties.EDITSTATUS === 1
+        needsReviewed++;
+        $('#tobepeerreviwedCounter').text(" (" + needsReviewed + " points)");
+      layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>');
+    }
+  }); 
+  
+  var finishedpts = L.esri.featureLayer({
+    url: "https://edits.nationalmap.gov/arcgis/rest/services/TNMCorps/TNMCorps_Map_Challenge/MapServer/0",
+  where: "FCODE = '83044' AND STATE='NY' AND (EDITSTATUS = 2 OR EDITSTATUS = 3 OR EDITSTATUS = 4)",
+          pointToLayer: function(feature, latlng) {
+              return L.marker(latlng, {
+              icon: L.ExtraMarkers.icon({
+                  icon: 'fa-check fa-2x',
+                  shape: 'square',
+                  markerColor:'yellow',
+                  prefix: 'fa'}),
+              },
+            )},
+            onEachFeature: function(feature, layer){
+              finshed++;
+              $('#finishedCounter').text(" (" + finshed  + " points)")
+              layer.bindPopup(feature.properties.NAME + '<hr> <a href="https://edits.nationalmap.gov/tnmcorps/?loc=' + feature.geometry.coordinates[1] + "," + feature.geometry.coordinates[0] + ",15"+ '" target=_blank style="color:#fffbfb;text-align:center">Link to point.</a>'); 
+    } 
+  });
+  
+  var unedited = L.layerGroup([uneditedpts]);
+  var peerreview = L.layerGroup([peerreviewpts]);
+  var finished = L.layerGroup([finishedpts]);
+
+  var overlay = {
+   "Unedited": unedited, 
+   "Peer Review": peerreview, 
+   "Finished": finished
+  }
+
+/*featureLayer.addTo(map);*/ 
+
+
+//Line 137 - 142 Is the variable that houses the basemap names. Two lines are commented out that reflect the two basemaps that are not currently being used for this challenge map. 
+var basemaps = {
+  "The Nationap Map + Aerial Imagery": imageryTopo,
+  /*"The National Map Base Layer": nationalMap,*/
+  // "USDA NAIP": usdaNAIP,
+};
 
 var map = L.map('map',{
-	layers: [national,usda],
+	layers: [national,unedited,peerreview,finished],
 	'maxBounds': bounds 
 }) .setView([38.005358, -79.154932], 6);
 
-featureLayer.addTo(map); 
-
-
 // custom zoom layer so as not to push past a certian level 
+
 map.zoomControl.setPosition('bottomright')
-//Line 137 - 142 Is the variable that houses the basemap names. Two lines are commented out that reflect the two basemaps that are not currently being used for this challenge map. 
-var basemaps = {
-  "The National Map Base Layer": nationalMap,
-  "The Nationap Map + Aerial Imagery": imageryTopo,
-  // "USDA NAIP": usdaNAIP,
- // "The National Map Imagery": imagery2 
-};
-// Lines 144 - 146 These lines create a button on the web map that allows a user to select which basemap they want to use. 
-L.control.layers(basemaps, null, {
+
+L.control.layers(basemaps, overlay, {
   position: 'topright'
 }).addTo(map);
-
-
-
