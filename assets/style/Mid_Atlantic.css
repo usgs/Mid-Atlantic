@@ -1,0 +1,229 @@
+/*Lines 2-8: Create the physical space for the entire site.*/
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Lines 10 -14: Gives the height and width of the map.*/
+#map{
+  height: 100%;
+  z-index: 999;
+  width: 70%
+}
+/*Lines 16- 18: No underline features and the background color and width  for the info section of the web application. */
+.nounderline {
+  text-decoration: none !important
+}
+/*Lines 20 -35 : This block of code focuses on the header of the web map application. H1 is the size of the text.This block of code breaks down what the font will look like given these parameters. */
+#info {
+  background-color: #002F57;
+  width: 30%
+}
+#header h1 {
+  font-size: 28px;
+  font-weight: 300;
+  font-family: 'open sans';
+  line-height: 54px;
+  letter-spacing: 3px;
+  height: 56px;
+  margin: 0;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+}
+h2 {
+  position: relative;
+  font-weight: bold;
+  margin-left: -15px;
+  margin-right: -35px;
+  border-left-width: 0px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ffffff;
+  background-color:  #00264c;
+  text-shadow: 0px 2px 2px #0A0A0A;
+  box-shadow: 0px 2px 2px #00264c;
+  z-index: 1000
+}
+/*Lines 52-62: This block of code is after the first block of h2 text. Again, this block focuses on what h2 will look like. Notice it does not give a font family and focuses strictly on the position and width of the h2 text in this block. */
+h2:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 0px;
+  top: 100%;
+  border: 10px solid;
+  border-color: #002F57 transparent transparent #002F57;
+  z-index: 999
+}
+/*Lines 64 - 82:  .info and .info h4 go together to show the design components for the ‘about’ section of the interactive web map. It provides the font family and the color of the font located in this section.*/
+.info {
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.44);
+  border-radius: 5px;
+  display: block;
+  color: #ffffff;
+  font-family: 'roboto', sans-serif;
+  font-size: 15px;
+  margin-left: -20px;
+  padding-left: 20px;
+}
+.info h4 {
+  font-family: 'roboto', sans-serif;
+  margin: 0 0 5px;
+  text-shadow: 0 1px 0 #454141;
+  color: #ffffff;
+  font-size: 25px
+}
+
+.container {
+  display: block;
+  align-items: right
+}
+
+.label {
+  font-family:'roboto', sans-serif;
+  margin: -5px; 
+  position: relative;
+  top: 5px; 
+  left: 0;  
+}
+
+.labeled {
+    font-family:'roboto', sans-serif;
+    margin: 0 5px; 
+    font-size: 15px;
+    text-align: justify; 
+    position: relative;
+    top: -4px;
+    left: 0
+  }
+
+.center-objs { 
+  position: absolute;
+  top: 500px;
+  left: 10
+}
+
+
+h5 {
+  position: static;
+  font-weight: normal;
+  margin-left: -20px;
+  padding-left: 20px;
+  color: #ffffff;
+  background-color: #004489;
+  z-index: 1000
+}
+.clusterpoints {
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.44);
+  border-radius: 5px;
+  display: block;
+  color: #0a0a0a;
+  font-family: 'roboto', sans-serif;
+  font-size: 20;
+  margin-left: -20px;
+  padding-left: 10px;
+}
+.clusterpoints h5 {
+  font-family: 'roboto', sans-serif;
+  margin: 0 0 5px;
+  text-shadow: 0 1px 0 ;
+  color: #ffffff;
+  font-size: 25
+}
+
+/*Lines: 84 - 97: This block of code controls the image for the cluster points in the legend and on the map. Showing the size and width of the icon */
+#img{
+	image-orientation: url("./assets/img/Main_point2.png");
+	float:left;
+	padding-bottom: 0px;
+	padding-right: 0px;
+	margin-left: inherit
+}
+#clusterImage{
+  background: url('../img/Main_point2.png') no-repeat 0 0;
+  width: 35px;
+  height: 46px;
+  color: #ffffff;
+  display: inline-block;  
+}
+/*Lines 99 -124: This block of code create the legend and the markers (Finished, Need to be checked and Need to be peer reviewed). */
+.markers-legend {
+  background: url('../plugins/leaflet-extra-markers/css/images/markers_default.png') no-repeat 0 0;
+  width: 35px;
+  height: 46px;
+  color: #ffffff;
+    display: inline-block;
+}
+#finished {
+  background-position: -108px -46px;
+  padding-top: 8px;
+  padding-left: 8px
+}
+#tobechecked {
+  background-position: 0 -46px;
+  padding-top: 11px;
+  padding-left: 14px
+}
+#tobepeerreviwed {
+  background-position: -432px -46px;
+  padding-top: 8px;
+  padding-left: 10px
+}
+/*.markers-legend:hover{
+  background-position: -108px -46px;
+  cursor: pointer;
+}
+/*
+Lines 126 - 168: show the features that the legend is capable of,. Such as hoving over each icon.*/
+.markers-descri{
+  display: inline-block;
+  width: calc(100% - 35px);
+  float: right;
+  padding-left: 5px;
+  font-size: 15px
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: #4ba6d9;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+.leaflet-popup-content-wrapper {
+  padding: 1px;
+  text-align: center;
+  border-radius: 0;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.marker-cluster-small {
+	background-color: rgba(139,38,224, 0.57);
+	}
+.marker-cluster-small div {
+	background-color: rgba(139,38,224, 0.77);
+	}
+
+.marker-cluster-medium {
+	background-color: rgba(139,38,224, 0.57);
+	}
+.marker-cluster-medium div {
+	background-color: rgba(139,38,224, 0.73);
+	}
+
+.marker-cluster-large {
+	background-color: rgba(139,38,224, 0.62);
+	}
+.marker-cluster-large div {
+	background-color: rgba(139,38,224, 0.74);
+	}
+.leaflet-marker-pane {
+    color: black;
+};
