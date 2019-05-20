@@ -1,0 +1,251 @@
+
+<html>
+<head>
+<meta charset="UTF-8"/>
+  <title>National Map Corps Edited Points</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/plugins/Leaflet-cluster-markers/css/MarkerCluster.css">
+  <link rel="stylesheet" href="./assets/plugins/Leaflet-cluster-markers/css/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="./assets/plugins/leaflet-awesome-markers/leaflet.awesome-markers.css" />
+  <link rel="stylesheet" href="./assets/plugins/leaflet-extra-markers/css/leaflet.extra-markers.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+
+  <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+  <script src="./assets/plugins/Leaflet-cluster-markers/JS/leaflet.markercluster.js"></script>
+  <script src="./assets/plugins/leaflet-awesome-markers/leaflet.awesome-markers.js"></script>
+  <script src="./assets/plugins/leaflet-extra-markers/js/leaflet.extra-markers.min.js"></script>
+  <script src="./assets/plugins/esri-leaflet/esri-leaflet.js"></script>
+  <script src="./assets/plugins/esri-leaflet/esri-leaflet-clustered-feature-layer-src.js"></script>
+  <script src="https://js.arcgis.com/3.28/"></script>
+  <script>
+    L_PREFER_CANVAS = true; 
+  </script>
+  <link rel="stylesheet" href="./assets/style/Mid_Atlantic.css">
+  <link href="./assets/style/common.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="./assets/style/custom.css" rel="stylesheet" type="text/css" media="screen" />
+
+  
+</head>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+ 
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TKQR8KP');</script>
+<!-- End Google Tag Manager -->
+<body> <!-- opening div for body -->
+<!-- BEGIN USGS Applications Header Template -->
+<header id="navbar" class="header-nav"  role="banner">
+  <div class="tmp-container">
+      <!-- primary navigation bar -->
+  		<!-- search bar-->
+      <div class="header-search">
+       <a class="logo-header" href="https://www.usgs.gov/" title="Home">
+          <img class="img"  src="./assets/img/logo.png"  alt="Home" />
+        </a>
+        <!--<form action="https://www.usgs.gov/science-explorer-results" method="GET" id="search-box">
+         <div class="fa-wrapper"><label for="se_search" class="only">Search</label>
+          <input id="se_search" type="search" name="es" placeholder="Search">
+          <button class="fa fa-search" type="submit">
+            <span class="only">Search</span>
+			 </button></div>
+        </form>-->
+      </div>
+      <!-- end search bar-->
+	</div> 
+	<!-- end header-container-->
+</header>
+<!-- END USGS Applications Header Template -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3" id="Info" style="height: 100%;">
+        <div id="header" class="ribbon">
+          <h2>TNMCorps </br> Challenge Map</h2>
+          <!-- <hr> -->
+          <h2> Mid-Atlantic: City/Town Halls </h2>
+        </div>
+        <div id="layerControl" style="padding-top: 15px">
+        </div>
+		<div class="info" style="margin-top: 15px">
+          <a href="#" data-toggle="modal" data-target="#myModal">
+            <h4>About</h4>
+          </a>
+        </div>
+        <div class="info" style="margin-top: 15px">
+          <div class="markers-box">
+            <div class="markers-legend" id="tobechecked">
+              <i class="fa fa-exclamation"></i>
+            </div>
+            <div class="markers-descri" id="tobecheckedDescr">
+      <!--<input type ="checkbox" id="Unedited" checked>-->
+      <!--Move Control layer outside of the Map-->
+      <div class="container">
+        <div class="center-objs">
+            <h3><p class="label"><u>Layers List:</u></p></h3>
+            <p class ="labeled">Click on the checkboxes in this drop-down menu<br> to turn layers off and on</p>
+          <div id="new-parent"></div>
+        </div>
+      </div>
+			<!--<p id ="demo"></p>-->
+				Points that need to be checked
+			  <div id="tobecheckedCounter"></div>
+            </div>
+          </div>
+          <div class="markers-box">
+            <div class="markers-legend" id="tobepeerreviwed">
+              <i class="fa fa-times"></i>
+            </div>
+            <div class="markers-descri" id="tobepeerreviwedDescr">
+			<!--<input type ="checkbox" id="PeerReview" checked>-->
+			<!--<p id="test"></p>-->
+              Points that need to be peer-reviewed
+			  <div id="tobepeerreviwedCounter"> </div>
+            </div>
+          </div>
+          <div class="markers-box">
+            <div class="markers-legend" id="finished">
+              <i class="fa fa-check"></i>
+            </div>
+            <div class="markers-descri" style="padding-top:10px" id="finishedDescr">
+			<!--<input type ="checkbox" id="Finished" checked>-->
+			<!--<p id = "example"></p>-->
+              Finished points
+			  <div id="finishedCounter"> </div>
+            </div>
+          </div>
+        </div>
+		<div>
+		  <div class="image">
+		  <div class="image" id= "img">
+		<!--div style="padding: 2px 5px 5px 5px">
+			<img src ="./assets/img/Main_point2.png"></a>
+		  </div-->
+		  </div>
+		  <!--div class="Write Up" id="clusterpoints">
+			  <p><h5>
+The purple circles represent clustered points. The number shown is the number of clustered points. Zoom in or click to see all of the points.</h5></p>
+<div id="clusterpoints"> </div>
+		  </div-->
+		  </div>
+        </div>
+                <div class="info" style="margin-top: 15px">
+            <h6>Updated In Real Time</h6>
+        </div>
+      </div>
+      <div class="col-sm-9" id="map" style="height: 100%;">
+        <script src="./Mid_Atlantic.js"></script>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">About</h4>
+        </div>
+        <div class="modal-body">
+          <h4>New to The National Map Corps? Check out our <a href="https://my.usgs.gov/confluence/display/nationalmapcorps/Home" target="_blank">home page</a> for more information.</h4>
+		  <h4>For more information, please visit our <a href="https://my.usgs.gov/confluence/display/nationalmapcorps/Mapping+Challenges" aria-label = "confluence website" target="_blank">Mapping Challenges Page!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+	<div class="tmp-container">
+		<!-- .footer-wrap -->
+			<!-- .footer-doi -->
+			<div class="footer-doi">
+				<!-- footer nav links -->
+				<ul class="menu nav">
+					<li class="first leaf menu-links menu-level-1"><a href="https://www.doi.gov/privacy">DOI Privacy Policy</a></li>
+					<li class="leaf menu-links menu-level-1"><a href="https://www.usgs.gov/laws/policies_notices.html">Legal</a></li>
+					<li class="leaf menu-links menu-level-1"><a href="https://www2.usgs.gov/laws/accessibility.html">Accessibility</a></li>
+					<li class="leaf menu-links menu-level-1"><a href="https://www.usgs.gov/sitemap.html">Site Map</a></li>
+					<li class="last leaf menu-links menu-level-1"><a href="https://answers.usgs.gov/">Contact USGS</a></li>
+				</ul>
+				<!--/ footer nav links -->      
+			</div>
+			<!-- /.footer-doi -->
+			<hr>
+
+		<!-- .footer-utl-links -->
+		<div class="footer-doi">
+			<ul class="menu nav">
+				<li class="first leaf menu-links menu-level-1"><a href="https://www.doi.gov/">U.S. Department of the Interior</a></li>
+				<li class="leaf menu-links menu-level-1"><a href="https://www.doioig.gov/">DOI Inspector General</a></li>
+				<li class="leaf menu-links menu-level-1"><a href="https://www.whitehouse.gov/">White House</a></li>
+				<li class="leaf menu-links menu-level-1"><a href="https://www.whitehouse.gov/omb/management/egov/">E-gov</a></li>
+				<li class="leaf menu-links menu-level-1"><a href="https://www.doi.gov/pmb/eeo/no-fear-act">No Fear Act</a></li>
+				<li class="last leaf menu-links menu-level-1"><a href="https://www2.usgs.gov/foia">FOIA</a></li>
+			</ul>
+			</div>			
+		<!-- /.footer-utl-links -->
+		<!-- .footer-social-links -->
+		<!--div class="footer-social-links">
+			<ul class="social">
+				<li class="follow">Follow</li>
+				<li class="twitter">
+					<a href="https://twitter.com/usgs" target="_blank">
+						<i class="fa fa-twitter-square"><span class="only">Twitter</span></i>
+					</a>
+				</li>
+				<li class="facebook">
+					<a href="https://facebook.com/usgeologicalsurvey" target="_blank">
+						<i class="fa fa-facebook-square"><span class="only">Facebook</span></i>
+					</a>
+				</li>
+				<li class="googleplus">
+					<a href="https://plus.google.com/112624925658443863798/posts" target="_blank">
+						<i class="fa fa-google-plus-square"><span class="only">Google+</span></i>
+					</a>
+				</li>
+				<li class="github">
+					<a href="https://github.com/usgs" target="_blank">
+						<i class="fa fa-github"><span class="only">GitHub</span></i>
+					</a>
+				</li>
+				<li class="flickr">
+					<a href="https://flickr.com/usgeologicalsurvey" target="_blank">
+						<i class="fa fa-flickr"><span class="only">Flickr</span></i>
+					</a>
+				</li>
+				<li class="youtube">
+					<a href="http://youtube.com/usgs" target="_blank">
+						<i class="fa fa-youtube-play"><span class="only">YouTube</span></i>
+					</a>
+				</li>
+				<li class="instagram">
+					<a href="https://instagram.com/usgs" target="_blank">
+						<i class="fa fa-instagram"><span class="only">Instagram</span></i>
+					</a>
+				</li>
+			</ul>
+		</div-->
+		<!-- /.footer-social-links -->
+		<!-- /.footer-wrap -->	
+</footer>
+<!-- END USGS Footer Template- -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQR8KP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
